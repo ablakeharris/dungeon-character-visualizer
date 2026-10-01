@@ -1,36 +1,60 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Dungeon Character Visualizer
 
-## Getting Started
+A Next.js UI for viewing and editing D&D 5e character JSON produced by the Dungeon Master Helper agent. Import a JSON file to populate the character sheet, edit its fields, and export the updated JSON. Character data is handled in the browser and is not saved to a server.
 
-First, run the development server:
+## Local Development
 
 ```bash
+npm ci
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Run a production build locally with:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+```
 
-## Learn More
+## Deploy to Cloud Run
 
-To learn more about Next.js, take a look at the following resources:
+The app can run as a private Cloud Run service alongside `dungeon-master-helper` in the same Google Cloud project and region. It scales to zero when idle and requires IAM authentication; it does not need a database or a public unauthenticated endpoint.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Prerequisites:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- `gcloud` installed and logged in (`gcloud auth login`)
+- A Google Cloud project with billing enabled and permission to enable APIs, deploy Cloud Run services, and grant `roles/run.invoker`
 
-## Deploy on Vercel
+From this repository, run:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+bash scripts/deploy.sh
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The script enables the Cloud Run, Cloud Build, and Artifact Registry APIs; builds from source; deploys the service without unauthenticated access; and grants the active gcloud account `roles/run.invoker`. Defaults match the helper's project and region:
+
+| Setting   | Default                    |
+| --------- | -------------------------- |
+| `PROJECT` | `dnd-waterdeep-492623`     |
+| `REGION`  | `us-central1`              |
+| `SERVICE` | `dnd-character-visualizer` |
+| `PORT`    | `8089` (local proxy only)  |
+
+Override a default inline, for example:
+
+```bash
+PROJECT=my-project REGION=us-west1 bash scripts/deploy.sh
+```
+
+After deployment, access the app through the authenticated local proxy printed by the script. Keep it running and open http://localhost:8089. The helper's proxy uses port `8088`, so both can run at the same time.
+
+To authorize another user, run:
+
+```bash
+gcloud run services add-iam-policy-binding dnd-character-visualizer \
+	--region=us-central1 --project=dnd-waterdeep-492623 \
+	--member="user:someone@example.com" --role="roles/run.invoker"
+```
+
+Cloud Run uses request-based billing and scales to zero. At low personal usage, runtime costs may fit within the Cloud Run free tier; the free tier is shared across projects on the billing account. Source builds and stored container images have separate Cloud Build and Artifact Registry allowances. See [Cloud Run pricing](https://cloud.google.com/run/pricing), [Cloud Build pricing](https://cloud.google.com/build/pricing), and [Artifact Registry pricing](https://cloud.google.com/artifact-registry/pricing).
