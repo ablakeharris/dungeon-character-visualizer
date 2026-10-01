@@ -1,0 +1,151 @@
+{
+  "name": "Borin Flamebeard",
+  "alignment": "Lawful Good",
+  "speed": {
+    "Walk": 30,
+    "Burrow": 0,
+    "Climb": 0,
+    "Fly": 0,
+    "Hover": false,
+    "Swim": 0
+  },
+  "hit_points": {
+    "max": 28,
+    "current": 28,
+    "dice": [{ "sides": 10, "count": 3, "mod": 0 }]
+  },
+  "skills": {
+    "Athletics": true,
+    "Acrobatics": false,
+    "SleightOfHand": false,
+    "Stealth": false,
+    "Arcana": false,
+    "History": false,
+    "Investigation": false,
+    "Nature": false,
+    "Religion": true,
+    "AnimalHandling": false,
+    "Insight": true,
+    "Medicine": false,
+    "Perception": false,
+    "Survival": false,
+    "Deception": false,
+    "Intimidation": false,
+    "Performance": false,
+    "Persuasion": true
+  },
+  "languages": ["Common", "Draconic", "Celestial"],
+  "ability_scores": {
+    "str": 17,
+    "dex": 10,
+    "con": 14,
+    "int": 8,
+    "wis": 12,
+    "cha": 14
+  },
+  "saving_throws": {
+    "str": true,
+    "dex": false,
+    "con": false,
+    "int": false,
+    "wis": false,
+    "cha": true
+  },
+  "armor_class": { "value": 20, "description": "Unarmored" },
+  "shield": false,
+  "player": { "name": "" },
+  "xp": 0,
+  "race": {
+    "name": "Dragonborn",
+    "subtype": "Gold",
+    "size": "Medium",
+    "traits": [
+      { "name": "Draconic Ancestry (Gold Dragon - Fire)" },
+      { "name": "Breath Weapon (Fire, 2d6)" },
+      { "name": "Damage Resistance (Fire)" }
+    ]
+  },
+  "classes": [
+    {
+      "name": "Paladin",
+      "level": 3,
+      "hit_die": 10,
+      "spellcasting": "cha",
+      "features": [
+        { "name": "Divine Sense" },
+        { "name": "Lay on Hands" },
+        { "name": "Fighting Style (Defense)" },
+        { "name": "Spellcasting" },
+        { "name": "Divine Smite" },
+        { "name": "Divine Health" },
+        { "name": "Sacred Oath (Oath of Devotion)" },
+        { "name": "Channel Divinity: Sacred Weapon" },
+        { "name": "Channel Divinity: Turn the Unholy" }
+      ]
+    }
+  ],
+  "background": { "name": "Acolyte" },
+  "weapon_proficiencies": ["Simple Weapons", "Martial Weapons"],
+  "armor_proficiencies": ["Light Armor", "Medium Armor", "Heavy Armor", "Shields"],
+  "tool_proficiencies": [],
+  "spells": [
+    {
+      "name": "Cure Wounds",
+      "description": "A creature you touch regains a number of hit points equal to 1d8 + your spellcasting ability modifier. This spell has no effect on undead or constructs.",
+      "level": "1st-level",
+      "casting_time": "1 action",
+      "range_area": "Touch",
+      "components": ["V", "S"],
+      "ritual": false,
+      "concentration": false,
+      "duration": "Instantaneous"
+    },
+    {
+      "name": "Divine Favor",
+      "description": "Your prayer empowers you with divine radiance. Until the spell ends, your weapon attacks deal an extra 1d4 radiant damage on a hit.",
+      "level": "1st-level",
+      "casting_time": "1 bonus action",
+      "range_area": "Self",
+      "components": ["V", "S"],
+      "ritual": false,
+      "concentration": true,
+      "duration": "1 minute"
+    },
+    {
+      "name": "Protection from Evil and Good",
+      "description": "Until the spell ends, one willing creature you touch is protected against certain types of creatures: aberrations, celestials, elementals, fey, fiends, and undead. The protection grants several benefits. Such creatures have disadvantage on attack rolls against the target. The target can't be charmed, frightened, or possessed by them. If the target is already charmed, frightened, or possessed by such a creature, the target has advantage on any new saving throw against the relevant effect.",
+      "level": "1st-level",
+      "casting_time": "1 action",
+      "range_area": "Touch",
+      "components": ["V", "S", "M"],
+      "ritual": false,
+      "concentration": true,
+      "duration": "10 minutes"
+    },
+    {
+      "name": "Shield of Faith",
+      "description": "A shimmering field of magic appears and surrounds a creature of your choice within range, granting it a +2 bonus to AC for the duration.",
+      "level": "1st-level",
+      "casting_time": "1 bonus action",
+      "range_area": "60 feet",
+      "components": ["V", "S", "M"],
+      "ritual": false,
+      "concentration": true,
+      "duration": "10 minutes"
+    }
+  ],
+  "equipment": [
+    { "name": "Plate Armor", "weight": 0.0, "magic": false, "quantity": 1 },
+    { "name": "Longsword", "weight": 0.0, "magic": false, "quantity": 1 },
+    { "name": "Shield", "weight": 0.0, "magic": false, "quantity": 1 },
+    { "name": "Javelin", "weight": 0.0, "magic": false, "quantity": 5 },
+    { "name": "Holy Symbol", "weight": 0.0, "magic": false, "quantity": 1 },
+    { "name": "Explorer's Pack", "weight": 0.0, "magic": false, "quantity": 1 },
+    { "name": "Prayer Book", "weight": 0.0, "magic": false, "quantity": 1 },
+    { "name": "Incense", "weight": 0.0, "magic": false, "quantity": 5 },
+    { "name": "Vestments", "weight": 0.0, "magic": false, "quantity": 1 },
+    { "name": "Common Clothes", "weight": 0.0, "magic": false, "quantity": 1 },
+    { "name": "Pouch", "weight": 0.0, "magic": false, "quantity": 1 },
+    { "name": "Gold Pieces", "weight": 0.0, "magic": false, "quantity": 15 }
+  ]
+}
