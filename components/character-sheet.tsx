@@ -97,8 +97,8 @@ export function CharacterSheet() {
         <SkillsSection character={character} onChange={onChange} />
         <ClassesSection character={character} onChange={onChange} />
         <ProficienciesSection character={character} onChange={onChange} />
-        <SpellsSection character={character} />
-        <EquipmentSection character={character} />
+        <SpellsSection character={character} onChange={onChange} />
+        <EquipmentSection character={character} onChange={onChange} />
         <DetailsSection character={character} onChange={onChange} />
       </form>
     </div>
