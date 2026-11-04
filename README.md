@@ -62,10 +62,11 @@ gcloud run services add-iam-policy-binding dnd-character-visualizer \
 To remove the deployment, run:
 
 ```bash
-bash scripts/teardown.sh        # add --yes to skip the confirmation prompt
+bash scripts/teardown.sh                 # asks for confirmation; --yes skips it
+bash scripts/teardown.sh --disable-apis  # also disable the APIs deploy.sh enabled
 ```
 
-This deletes the Cloud Run service (and its IAM bindings) and this service's container images in the `cloud-run-source-deploy` Artifact Registry repository. It accepts the same `PROJECT`, `REGION`, and `SERVICE` overrides as the deploy script. The enabled APIs, the shared repository, and the Cloud Build source bucket stay in place because `dungeon-master-helper` uses them too.
+This deletes the Cloud Run service (and its IAM bindings), its image in the `cloud-run-source-deploy` Artifact Registry repository, and its uploaded source archives. The repository and source buckets are shared with `dungeon-master-helper`, so each is deleted only once it is empty. Run this alongside the helper's `teardown.sh`, in either order, and whichever runs second cleans up the shared resources. `--disable-apis` only takes effect once no Cloud Run services remain in the project. It accepts the same `PROJECT`, `REGION`, and `SERVICE` overrides as the deploy script.
 
 ## Costs
 
