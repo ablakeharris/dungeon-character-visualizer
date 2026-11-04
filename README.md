@@ -57,4 +57,16 @@ gcloud run services add-iam-policy-binding dnd-character-visualizer \
 	--member="user:someone@example.com" --role="roles/run.invoker"
 ```
 
+## Tear Down
+
+To remove the deployment, run:
+
+```bash
+bash scripts/teardown.sh        # add --yes to skip the confirmation prompt
+```
+
+This deletes the Cloud Run service (and its IAM bindings) and this service's container images in the `cloud-run-source-deploy` Artifact Registry repository. It accepts the same `PROJECT`, `REGION`, and `SERVICE` overrides as the deploy script. The enabled APIs, the shared repository, and the Cloud Build source bucket stay in place because `dungeon-master-helper` uses them too.
+
+## Costs
+
 Cloud Run uses request-based billing and scales to zero. At low personal usage, runtime costs may fit within the Cloud Run free tier; the free tier is shared across projects on the billing account. Source builds and stored container images have separate Cloud Build and Artifact Registry allowances. See [Cloud Run pricing](https://cloud.google.com/run/pricing), [Cloud Build pricing](https://cloud.google.com/build/pricing), and [Artifact Registry pricing](https://cloud.google.com/artifact-registry/pricing).
